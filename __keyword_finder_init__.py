@@ -63,34 +63,39 @@ def matching_keywords(job_posting, resume):
     common_keywords = common_words(list_1, list_2)
     
     #Print number of matching words
-    print('The number of common words in your resume and the job posting is: {}'.format(len(common_keywords)),'\n')
+    string_1 = 'The number of common words in your resume and the job posting is: {}'.format(len(common_keywords))
     
     #Print the percentage of matching words
-    print('{:.0%} of the words in your resume are in the job description'.format(len(common_keywords)/len(list_2)), '\n')    
+    string_2 = '{:.0%} of the words in your resume are in the job description'.format(len(common_keywords)/len(list_2))    
     
     # Create an empty dictionary
-    freq_table = {}
+    word_count_table = {}
     
     # Create frequency table for the words that are not in the list_2 but in the list_1
     for word in list_1:
         if not word in list_2:
-            if word in freq_table:
-                freq_table[word] += 1
+            if word in word_count_table:
+                word_count_table[word] += 1
             else:
-                freq_table[word] = 1
+                word_count_table[word] = 1
     
     # Sort the dictionary by values in descending order
-    freq_table = dict(sorted(freq_table.items(), key=lambda item: item[1], reverse=True))
+    word_count_table = dict(sorted(word_count_table.items(), key=lambda item: item[1], reverse=True))
     
     # Create a pandas dataframe from the dictionary
     pd.set_option('display.max_rows', 300)
-    df = pd.DataFrame.from_dict(freq_table.items())
+    df = pd.DataFrame.from_dict(word_count_table.items())
     
     # Rename columns
     df.columns = ['word','count']
 
-    html_output = df.to_html('templates/output.html')
+    #df.to_html()
         
     """print('You can choose some words in the job posting from the table below to add your resume.')
     """
-    return html_output
+
+    result_dict = {}
+    result_dict['string_1'] = string_1
+    result_dict['string_2'] = string_2
+    result_dict['table'] = df.to_html()
+    return result_dict

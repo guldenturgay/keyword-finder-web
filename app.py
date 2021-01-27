@@ -22,7 +22,7 @@ def find_words():
         resume=request.form['resume_']
         job_posting=request.form['job_posting_']
         output = matching_keywords(job_posting, resume)
-        return render_template('output.html', output = output)
+        return render_template('result.html', output=output)
     return render_template('first_page.html', form=form)
 
 if __name__ == '__main__':

@@ -6,6 +6,12 @@
             href="{{ url_for('static', filename='style.css') }}">
     </head>
     <body>
-        <div>{{output}}</div>
+        <div>{{output.string_1}}</div>
+        <br>
+        <br>
+        <div>{{output.string_2}}</div>
+        <br>
+        <br>
+        <div>{{output.table|safe}}</div>
     </body>
 </html>
