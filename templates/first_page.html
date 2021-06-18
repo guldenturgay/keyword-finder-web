@@ -8,7 +8,7 @@
     <body>
         {% from '_formhelpers.html' import render_field %}
         <div>Find the words</div>
-        <form method=post action="/result">
+        <form method=post action="/">
             <dl>
                 {{render_field(form.resume_)}}
                 {{render_field(form.job_posting_)}}
