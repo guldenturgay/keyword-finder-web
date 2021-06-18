@@ -1,11 +1,12 @@
 # Import libraries and modules
 import pandas as pd
 import nltk
-from nltk.corpus import stopwords
+#from nltk.corpus import stopwords
 import re
 import string
 wn = nltk.WordNetLemmatizer() #Lemmatizer
-stopword = nltk.corpus.stopwords.words('english') #Stopwords in English language
+
+#stopword = nltk.corpus.stopwords.words('english') #Stopwords in English language
 
 
 def matching_keywords(job_posting, resume):
@@ -34,10 +35,10 @@ def matching_keywords(job_posting, resume):
         tokens = re.split('\W+', text)
         
         #Remove stopwords
-        text = [word for word in tokens if word not in stopword]
+        #text = [word for word in tokens if word not in stopword]
         
         #Lemmatize the words
-        text = [wn.lemmatize(word) for word in text]
+        text = [wn.lemmatize(word) for word in tokens]
         
         #Return text
         return text
