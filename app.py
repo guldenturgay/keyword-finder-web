@@ -2,9 +2,7 @@ from flask import Flask, render_template, request
 from wtforms import Form, TextAreaField, validators
 import __keyword_finder_init__
 from __keyword_finder_init__ import matching_keywords
-import os
-import logging
-import sys
+
 app = Flask(__name__)
 
 class CompareForm(Form):
@@ -29,9 +27,6 @@ def find_words():
     return render_template('first_page.html', form=form)
 
 if __name__ == '__main__':
-    app.logger.addHandler(logging.StreamHandler(sys.stdout))
-    app.logger.setLevel(logging.ERROR)
-
     port = int(os.environ.get('PORT', 5000))
     app.run(debug=True, port=port)
     
