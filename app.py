@@ -16,14 +16,14 @@ def index():
     return render_template('first_page.html', form=form)
    
 
-@app.route('/', methods=['POST'])
+@app.route('/result', methods=['POST'])
 def find_words():
     form = CompareForm(request.form)
     if request.method == 'POST' and form.validate():
         resume=request.form['resume_']
         job_posting=request.form['job_posting_']
         output = matching_keywords(job_posting, resume)
-        return render_template('first_page.html', output=output)
+        return render_template('result.html', output=output)
     return render_template('first_page.html', form=form)
 
 if __name__ == '__main__':
