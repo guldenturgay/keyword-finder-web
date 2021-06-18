@@ -1,10 +1,12 @@
-from flask import Flask, render_template, request 
+from flask import Flask, render_template, request
+from flask.logging import create_logger
 from wtforms import Form, TextAreaField, validators
 import __keyword_finder_init__
 from __keyword_finder_init__ import matching_keywords
 import os
 
 app = Flask(__name__)
+LOG = create_logger(app)
 
 class CompareForm(Form):
     resume_ = TextAreaField('', [validators.DataRequired()])
@@ -18,6 +20,9 @@ def index():
 
 @app.route('/result', methods=['POST'])
 def find_words():
+    LOG.debug('A debug message')
+    LOG.error('An error message')
+
     form = CompareForm(request.form)
     if request.method == 'POST' and form.validate():
         resume=request.form['resume_']
@@ -31,3 +36,4 @@ if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(debug=True, port=port)
     
+
