@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 from wtforms import Form, TextAreaField, validators
 import __keyword_finder_init__
 from __keyword_finder_init__ import matching_keywords
-
+import os
 app = Flask(__name__)
 
 class CompareForm(Form):
